@@ -1,46 +1,49 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
 export default function App() {
-  const [name, setName] = useState('jim');
-  const [age, setAge] = useState('30');
+  const [people, setPeople] = useState([
+    { name: 'bob', key: '1' },
+    { name: 'jim', key: '2' },
+    { name: 'bobjim', key: '3' },
+    { name: 'jimbob', key: '4' },
+    { name: 'bob', key: '5' },
+    { name: 'jim', key: '6' },
+    { name: 'bobjim', key: '7' },
+    { name: 'jimbob', key: '8' },
+    { name: 'bob', key: '9' },
+    { name: 'jim', key: '10' },
+    { name: 'bobjim', key: '11' },
+    { name: 'jimbob', key: '12' },
+    { name: 'bob', key: '13' },
+    { name: 'jim', key: '14' },
+    { name: 'bobjim', key: '15' },
+    { name: 'jimbob', key: '16' },
+  ]);
 
-  return (
+  return <ScrollView>
     <View style={styles.container}>
-      <Text>Enter name:</Text>
-      <TextInput
-        multiline
-        style={styles.input}
-        placeholder='joe'
-        onChangeText={(val) => setName(val)}
-      />
-      <Text>Enter age:</Text>
-      <TextInput
-        keyboardType='numeric'
-        style={styles.input}
-        placeholder='100'
-        onChangeText={(val) => setAge(val)}
-      />
-      <Text>name: {name}, age: {age}</Text>
+      {people.map(person => {
+        return <View key={person.key}>
+          <Text style={styles.person}>{person.name}</Text>
+        </View>
+      })}
     </View>
-  );
+  </ScrollView>
+
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: 40,
+    paddingHorizontal: 20
   },
-  buttonContainer: {
-    marginTop: 30
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#777',
-    padding: 8,
-    margin: 10,
-    width: 200
+  person: {
+    marginTop: 24,
+    padding: 30,
+    backgroundColor: 'pink',
+    fontSize: 24
   }
 });
